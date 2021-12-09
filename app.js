@@ -32,6 +32,8 @@ app.use('/api', studentAPI)
 
 // Create port
 const port = process.env.PORT || 3000;
+app.get('/index',function(req,res) {
+  res.sendFile(__dirname + '/public/index.html');
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
