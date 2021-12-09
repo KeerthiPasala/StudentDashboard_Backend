@@ -19,25 +19,33 @@ mongoose.connect(database.db, {
 )
 
 
-const studentAPI = require('../backend/routes/student.route')
+const studentAPI = require('./routes/student.route')
+const header = {
+  origin:'*'
+};
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(cors());
+app.use(cors(header));
+app.use(cors({
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
 
 // API
-app.use('/api', studentAPI)
-app.use(express.static('public'));
+app.use('/api',cors(header), studentAPI)
+
 // Create port
 const port = process.env.PORT || 3000;
-app.get('/index',function(req,res) {
-  res.sendFile(__dirname + '/public/index.html');});
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
+app.use(express.static('public'));
 
+app.get('/index',function(req,res) {
+    res.sendFile(__dirname + '/public/index.html');
+  });
 // Find 404
 app.use((req, res, next) => {
   next(createError(404));
