@@ -20,21 +20,15 @@ mongoose.connect(database.db, {
 
 
 const studentAPI = require('../backend/routes/student.route')
-const header = {
-  origin:'*'
-};
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(cors(header));
-app.use(cors({
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-}));
+app.use(cors());
 
 // API
-app.use('/api',cors(header), studentAPI)
+app.use('/api', studentAPI)
 
 // Create port
 const port = process.env.PORT || 3000;
