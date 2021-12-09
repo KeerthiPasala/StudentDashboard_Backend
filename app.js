@@ -20,12 +20,18 @@ mongoose.connect(database.db, {
 
 
 const studentAPI = require('../backend/routes/student.route')
+const header = {
+  origin:'*'
+};
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(cors());
+app.use(cors(header));
+app.use(cors({
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
 
 // API
 app.use('/api', studentAPI)
