@@ -34,7 +34,7 @@ app.use(cors({
 }));
 
 // API
-app.use('/api',cors(header), studentAPI)
+app.use('/api', studentAPI)
 
 // Create port
 const port = process.env.PORT || 3000;
