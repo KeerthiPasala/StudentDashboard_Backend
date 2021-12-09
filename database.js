@@ -1,3 +1,3 @@
  module.exports = {
-    db: 'mongodb://localhost:16865/admin'
+    db: 'mongodb://blooming-lake-29874.herokuapp.com/admin'
  }
