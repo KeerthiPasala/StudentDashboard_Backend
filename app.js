@@ -29,11 +29,11 @@ app.use(cors());
 
 // API
 app.use('/api', studentAPI)
-
+app.use(express.static('public'));
 // Create port
 const port = process.env.PORT || 3000;
 app.get('/index',function(req,res) {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/index.html');});
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
